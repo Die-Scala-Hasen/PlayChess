@@ -14,6 +14,6 @@ class Application @Inject()(implicit system: ActorSystem, materializer: Material
 
 
   def chess() = Action {
-    Ok(views.html.wui("PENIS"))
+    Ok(views.html.wui("Test"))
   }
 }

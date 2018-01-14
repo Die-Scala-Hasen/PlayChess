@@ -16,8 +16,8 @@ class GameInstance() {
       case info: UpdateInfo =>
         val gamefield = info.gameField
         println(gamefield.toString)
-      println("TEST hallo Ficken")
-      case _ => println("Penis dich ")
+      println("printed gamefield from game instance actor")
+      case _ => println(" Message received from GameInstanceActor")
     }
 
   }
