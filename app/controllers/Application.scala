@@ -9,7 +9,7 @@ import play.api.mvc._
 
 class Application @Inject()(implicit system: ActorSystem, materializer: Materializer) extends Controller {
 
- // private var gameInstances:GameInstance = new GameInstance()
+  private var gameInstances:GameInstance = new GameInstance()
 
 
 

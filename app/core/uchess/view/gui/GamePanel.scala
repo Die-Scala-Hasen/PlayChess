@@ -24,6 +24,8 @@ class GamePanel(controller: ActorSelection) extends GridPanel(0, 8) {
 
   private val buttons = new ListBuffer[PieceButton]()
 
+  private val imagesPath = "public/images/"
+
   initPieceButtons()
   colorizeBoard()
   addActionListenerToBtns()
@@ -65,7 +67,7 @@ class GamePanel(controller: ActorSelection) extends GridPanel(0, 8) {
 
   private def setBtnIcon(btn: PieceButton, icon: String): Unit = {
     try {
-      val image = new ImageIcon(this.getClass.getResource(icon)).getImage
+      val image = new ImageIcon(imagesPath+icon).getImage
       btn.icon = new ImageIcon(image)
     } catch {
       case ex: Exception =>
@@ -77,7 +79,7 @@ class GamePanel(controller: ActorSelection) extends GridPanel(0, 8) {
     for (n <- 0 to 63) {
       contents += buttons(n)
       buttons(n).figure match {
-        case Some(f) => setBtnIcon(buttons(n), "resources/" + f + ".png")
+        case Some(f) => setBtnIcon(buttons(n), f + ".png")
         case None => buttons(n).icon = null
       }
     }
@@ -161,7 +163,7 @@ class GamePanel(controller: ActorSelection) extends GridPanel(0, 8) {
           if (buttons(n).figure.isDefined && s"field._2.color + field._2.getClass.getSimpleName".equals(buttons(n).figure.get)) {
               buttons(n).icon = null
           } else {
-            setBtnIcon(buttons(n), "resources/" + field._2.color + field._2.getClass.getSimpleName + ".png")
+            setBtnIcon(buttons(n),field._2.color + field._2.getClass.getSimpleName + ".png")
           }
         }
       }
