@@ -1,11 +1,43 @@
 package core.uchess.model.impl
 
 import scala.collection.mutable
-
 import core.uchess.model.Piece
 import core.uchess.util.Point
+import play.api.libs.json.Json
+import play.api.libs.json.JsValue
 
 case class GameField(size: Int, gameField: Map[Point, Piece]) {
+
+
+  def toJson: JsValue = {
+    val sb: mutable.StringBuilder = new StringBuilder
+
+    sb ++= "{\n" + "\"gamefield\" : " + "[\n"
+
+    for {
+      y <- 0 until size
+      x <- 0 until size
+    } {
+
+      gameField.get(Point(x, y)) match {
+        case Some(p) => {
+          sb ++= "{\"figur\" " + ": " + "\"" +p.toString + "\"," + "\n" +
+            "\"x\"" + ": " + +x + ",\n" +
+            "\"y\"" + ": " + y
+          if(x==7 && y == 7) {
+          sb ++= "\n}\n]\n}"
+          }
+          else
+            sb ++= "\n},\n"
+        }
+        case None =>
+      }
+    }
+
+    val jsonObject: JsValue = Json.parse(sb.result())
+//    println(jsonObject \ "gamefield")
+    jsonObject
+  }
 
   override def toString: String = {
 
