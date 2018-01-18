@@ -25,7 +25,7 @@ class UChessControllerTest extends WordSpec with Matchers {
     "handle a invalid command" in {
       controller ! RestartCmd
       controller ! "Invalid Command String"
-      Thread.sleep(400) // wait for actor message receive
+      Thread.sleep(1000) // wait for actor message receive
 
       testInfo match {
         case ii: InvalidInfo =>
