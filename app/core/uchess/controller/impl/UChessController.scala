@@ -1,6 +1,8 @@
 package core.uchess.controller.impl
 
 import akka.actor.{Actor, ActorSelection}
+import akka.actor.ActorRef
+import akka.actor.Props
 import core.uchess.controller.Controller
 import core.uchess.model.Piece
 import core.uchess.model.impl.GameField
@@ -9,11 +11,15 @@ import core.uchess.util.Point
 
 case object StartMessage
 
-class UChessController() extends Actor with Controller {
+object UChessController {
+  def props(viewRefs: List[ActorRef]): Props = Props(new UChessController(viewRefs))
+}
+
+class UChessController(viewRefs: List[ActorRef]) extends Actor with Controller {
+  println("Hello World!")
   private var gameField = GameField(8)
-  private val view: ActorSelection = context.system.actorSelection("user/view*")
-  private var movePiece: Piece = _
-  private var movePiecePos: Point = _
+  private var movePiece: Piece = null // TODO MARCEL Null is poop; _ == null
+  private var movePiecePos: Point = null // TODO MARCEL Null is poop
   private var startPlayerWhite = true
   private var whiteKingAlive = true
   private var blackKingAlive = true
@@ -25,14 +31,16 @@ class UChessController() extends Actor with Controller {
   initAll()
   notifyView()
 
+  private def tellView(msg: Any) = {
+    viewRefs.foreach{view => view ! msg}
+  }
+
   override def receive = {
     case QuitCmd => exitGame()
     case RestartCmd => reset()
     case move: MoveCmd => handleMovement(move.point)
-    case _ if !winner.isEmpty => view ! InvalidInfo(gameField, "Invalid Command")
-    case _ => view ! InvalidInfo(gameField, "Invalid Command")
-
-    case msg: String => println("deine msg ist: " + msg)
+    case _ if !winner.isEmpty => tellView(InvalidInfo(gameField, "Invalid Command"))
+    case _ => tellView(InvalidInfo(gameField, "Invalid Command"))
   }
 
   private def initAll(): Unit = {
@@ -49,10 +57,11 @@ class UChessController() extends Actor with Controller {
   }
 
   private def notifyView(): Unit = {
+    println(gameField.toJson)
     if (gameOver) {
       val info = GameoverInfo(gameField, winner)
 //      gameOver = false
-      view ! info
+      tellView(info)
     } else {
       var selPos: (Point) = null
       var possMoves: List[Point] = null
@@ -62,7 +71,7 @@ class UChessController() extends Actor with Controller {
       }
       val info = UpdateInfo(gameField, possMoves, selPos, status)
       //remote ! info
-      view ! info
+      tellView(info)
     }
 
   }
@@ -182,3 +191,4 @@ class UChessController() extends Actor with Controller {
   }
 
 }
+

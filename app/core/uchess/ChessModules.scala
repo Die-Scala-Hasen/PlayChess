@@ -4,6 +4,7 @@ import akka.actor.{ActorRef, ActorSystem, Props}
 import core.uchess.view.gui.SwingActor
 import core.uchess.view.tui.Tui
 
+// Todo marcel was soll der java code hier????
 trait ChessModule {
   def createUI()(implicit system: ActorSystem): Unit
 
