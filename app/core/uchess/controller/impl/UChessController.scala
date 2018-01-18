@@ -9,8 +9,6 @@ import core.uchess.model.impl.GameField
 import core.uchess.model.impl.Pawn
 import core.uchess.util.Point
 
-case object StartMessage
-
 object UChessController {
   def props(viewRefs: List[ActorRef]): Props = Props(new UChessController(viewRefs))
 }
@@ -84,10 +82,6 @@ class UChessController(viewRefs: List[ActorRef]) extends Actor with Controller {
       false
   }
 
-  override def getField(): GameField = {
-    gameField
-  }
-
   private def select(point: Point): Unit = {
     val gameField = this.gameField.gameField
     gameField.get(point) match {
@@ -106,10 +100,6 @@ class UChessController(viewRefs: List[ActorRef]) extends Actor with Controller {
   }
 
   private def handleMovement(point: Point): Unit = {
-    if (winner.nonEmpty) {
-      gameOver = true
-    }
-
     if (!selected) {
       select(point)
     } else {
@@ -121,9 +111,6 @@ class UChessController(viewRefs: List[ActorRef]) extends Actor with Controller {
     val start = movePiecePos
     val gameField = this.gameField.gameField
     gameField.get(start) match {
-      case None =>
-        status = "No Figure to move."
-        notifyView()
       case Some(p) =>
         val validMoveList = p.possibleMove(gameField, start)
         if (validMoveList.contains(target) && checkPlayerTurn(p)) {
@@ -190,6 +177,4 @@ class UChessController(viewRefs: List[ActorRef]) extends Actor with Controller {
       System.exit(0)
     }
   }
-
 }
-

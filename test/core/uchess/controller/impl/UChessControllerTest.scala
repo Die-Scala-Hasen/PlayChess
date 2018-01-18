@@ -1,7 +1,10 @@
 package core.uchess.controller.impl
 
-import akka.actor.{Actor, ActorSystem, Props}
+import akka.actor.Actor
+import akka.actor.ActorSystem
+import akka.actor.Props
 import akka.actor.ActorRef
+import core.uchess.model.impl.GameField
 import core.uchess.util.Point
 import org.scalatest.WordSpec
 import org.scalatest.Matchers
@@ -58,6 +61,45 @@ class UChessControllerTest extends WordSpec with Matchers {
       testInfo match {
         case ui: UpdateInfo =>
           ui.status shouldBe "Figure was moved successfully."
+          ui.selfPos shouldBe null
+          ui.possibleMoves shouldBe null
+      }
+    }
+
+    "handle the right players turn" in {
+
+      controller ! RestartCmd
+
+      controller ! MoveCmd(Point(4, 6))
+      controller ! MoveCmd(Point(4, 4))
+      Thread.sleep(200) // wait for actor message receive
+
+      var gameFileAfterMove : GameField = null
+
+      testInfo match {
+        case ui: UpdateInfo =>
+          gameFileAfterMove = ui.gameField
+      }
+
+      controller ! MoveCmd(Point(4, 4))
+      Thread.sleep(200) // wait for actor message receive
+
+
+      testInfo match {
+        case ui: UpdateInfo =>
+          ui.gameField shouldEqual gameFileAfterMove
+      }
+    }
+
+    "handle if no figure is selected to move" in {
+
+      controller ! RestartCmd
+      controller ! MoveCmd(Point(4, 4))
+      Thread.sleep(200) // wait for actor message receive
+
+      testInfo match {
+        case ui: UpdateInfo =>
+          ui.status shouldBe "No Figure selected."
           ui.selfPos shouldBe null
           ui.possibleMoves shouldBe null
       }
