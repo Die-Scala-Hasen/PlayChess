@@ -1,14 +1,7 @@
-package de.htwg.uchess.controller.impl
+package core.uchess.controller.impl
 
 import akka.actor.{Actor, ActorSystem, Props}
-import core.uchess.controller.impl.Info
-import core.uchess.controller.impl.UChessController
-import core.uchess.controller.impl.RestartCmd
-import core.uchess.controller.impl.InvalidInfo
-import core.uchess.controller.impl.MoveCmd
-import core.uchess.controller.impl.UpdateInfo
-import core.uchess.controller.impl.QuitCmd
-import core.uchess.controller.impl.GameoverInfo
+import akka.actor.ActorRef
 import core.uchess.util.Point
 import org.scalatest.WordSpec
 import org.scalatest.Matchers
@@ -24,15 +17,15 @@ class UChessControllerTest extends WordSpec with Matchers {
   }
 
   "A new UChessController as part of an Actorsystem" should {
-    val system: ActorSystem = ActorSystem("UChessTestSystem")
-    system.actorOf(Props(new TestUI), name = "view$testUI")
-    val controller = system.actorOf(Props[UChessController], "controller")
 
+    implicit val system: ActorSystem = ActorSystem("UChessTestSystem")
+    val testUiRef = system.actorOf(Props(new TestUI), "view$testUI")
+    val controller: ActorRef = system.actorOf(UChessController.props(List(testUiRef)), "controller")
 
     "handle a invalid command" in {
       controller ! RestartCmd
-      controller ! "Invalide Command String"
-      Thread.sleep(200) // wait for actor message receive
+      controller ! "Invalid Command String"
+      Thread.sleep(400) // wait for actor message receive
 
       testInfo match {
         case ii: InvalidInfo =>
