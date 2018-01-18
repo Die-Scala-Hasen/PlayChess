@@ -3,7 +3,6 @@ package core.uchess
 import java.util.concurrent.CountDownLatch
 
 import akka.actor.{ActorRef, ActorSystem, Props}
-import com.google.inject.Inject
 import core.uchess.controller.impl.UChessController
 import core.uchess.view.gui.SwingActor
 import core.uchess.view.tui.Tui
