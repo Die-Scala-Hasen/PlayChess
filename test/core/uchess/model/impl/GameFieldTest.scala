@@ -3,6 +3,7 @@ package core.uchess.model.impl
 import core.uchess.util.Point
 import org.scalatest.WordSpec
 import org.scalatest.Matchers
+import play.api.libs.json.Json
 
 class GameFieldTest extends WordSpec with Matchers {
   "A Gamefield should be scalable and contains specific figures " when {
@@ -81,6 +82,46 @@ class GameFieldTest extends WordSpec with Matchers {
 
       val gameFieldToTest = GameField(8)
       gameFieldToTest.toString shouldBe printOfGameField
+    }
+    "have a specific toJson Method" in {
+
+      val jsonOfGameField = "{\"gamefield\":[" +
+        "{\"figur\":\"♜\",\"x\":0,\"y\":0}," +
+        "{\"figur\":\"♞\",\"x\":1,\"y\":0}," +
+        "{\"figur\":\"♝\",\"x\":2,\"y\":0}," +
+        "{\"figur\":\"♛\",\"x\":3,\"y\":0}," +
+        "{\"figur\":\"♚\",\"x\":4,\"y\":0}," +
+        "{\"figur\":\"♝\",\"x\":5,\"y\":0}," +
+        "{\"figur\":\"♞\",\"x\":6,\"y\":0}," +
+        "{\"figur\":\"♜\",\"x\":7,\"y\":0}," +
+        "{\"figur\":\"♟\",\"x\":0,\"y\":1}," +
+        "{\"figur\":\"♟\",\"x\":1,\"y\":1}," +
+        "{\"figur\":\"♟\",\"x\":2,\"y\":1}," +
+        "{\"figur\":\"♟\",\"x\":3,\"y\":1}," +
+        "{\"figur\":\"♟\",\"x\":4,\"y\":1}," +
+        "{\"figur\":\"♟\",\"x\":5,\"y\":1}," +
+        "{\"figur\":\"♟\",\"x\":6,\"y\":1}," +
+        "{\"figur\":\"♟\",\"x\":7,\"y\":1}," +
+        "{\"figur\":\"♙\",\"x\":0,\"y\":6}," +
+        "{\"figur\":\"♙\",\"x\":1,\"y\":6}," +
+        "{\"figur\":\"♙\",\"x\":2,\"y\":6}," +
+        "{\"figur\":\"♙\",\"x\":3,\"y\":6}," +
+        "{\"figur\":\"♙\",\"x\":4,\"y\":6}," +
+        "{\"figur\":\"♙\",\"x\":5,\"y\":6}," +
+        "{\"figur\":\"♙\",\"x\":6,\"y\":6}," +
+        "{\"figur\":\"♙\",\"x\":7,\"y\":6}," +
+        "{\"figur\":\"♖\",\"x\":0,\"y\":7}," +
+        "{\"figur\":\"♘\",\"x\":1,\"y\":7}," +
+        "{\"figur\":\"♗\",\"x\":2,\"y\":7}," +
+        "{\"figur\":\"♕\",\"x\":3,\"y\":7}," +
+        "{\"figur\":\"♔\",\"x\":4,\"y\":7}," +
+        "{\"figur\":\"♗\",\"x\":5,\"y\":7}," +
+        "{\"figur\":\"♘\",\"x\":6,\"y\":7}," +
+        "{\"figur\":\"♖\",\"x\":7,\"y\":7}" +
+        "]}"
+
+      val gameFieldToTest = GameField(8)
+      gameFieldToTest.toJson shouldBe Json.parse(jsonOfGameField)
     }
   }
 }
