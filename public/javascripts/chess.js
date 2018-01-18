@@ -12,7 +12,8 @@ function start() {
         console.log(json);
     };
     socket.onopen = function(event) {
-        socket.send(JSON.stringify({msg: "HelloFromBrowser"}));
+        // For DEBUG
+        // socket.send(JSON.stringify({msg: "HelloFromBrowser"}));
         console.log("socket opened");
     };
     socket.onclose = function(event) {

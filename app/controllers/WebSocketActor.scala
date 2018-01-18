@@ -46,7 +46,8 @@ class WebSocketActor(socketOut: ActorRef, controllerActor: ActorRef) extends Act
   }
 
   override def postStop() {
-    println("Disconnected.")
+//    For DEBUG
+//    println("Disconnected.")
     UnregisterWebsocket
     futureWuiRef.foreach(_ ! UnregisterWebsocket(self))
   }

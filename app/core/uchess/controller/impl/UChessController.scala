@@ -56,7 +56,8 @@ class UChessController(viewRefs: List[ActorRef]) extends Actor with Controller {
   }
 
   private def notifyView(): Unit = {
-    println(gameField.toJson)
+    //For DEBUG
+    //println(gameField.toJson)
     if (gameOver) {
       val info = GameoverInfo(gameField, winner)
       tellView(info)
