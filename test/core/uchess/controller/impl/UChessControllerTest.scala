@@ -74,7 +74,7 @@ class UChessControllerTest extends WordSpec with Matchers {
       controller ! MoveCmd(Point(4, 4))
       Thread.sleep(200) // wait for actor message receive
 
-      var gameFileAfterMove : GameField = null
+      var gameFileAfterMove: GameField = null
 
       testInfo match {
         case ui: UpdateInfo =>
@@ -121,7 +121,7 @@ class UChessControllerTest extends WordSpec with Matchers {
     }
 
 
-    "handle game over" in {
+    "handle game over for white" in {
 
       controller ! RestartCmd
       controller ! MoveCmd(Point(4, 6))
@@ -143,6 +143,43 @@ class UChessControllerTest extends WordSpec with Matchers {
       testInfo match {
         case gi: GameoverInfo =>
           gi.status shouldBe "White got the chicken dinner"
+      }
+    }
+
+
+    "handle game over for balck" in {
+
+      controller ! RestartCmd
+
+      controller ! MoveCmd(Point(4, 6))
+      controller ! MoveCmd(Point(4, 4))
+
+      controller ! MoveCmd(Point(4, 1))
+      controller ! MoveCmd(Point(4, 3))
+
+      controller ! MoveCmd(Point(4, 7))
+      controller ! MoveCmd(Point(4, 6))
+
+      controller ! MoveCmd(Point(3, 0))
+      controller ! MoveCmd(Point(6, 3))
+
+      controller ! MoveCmd(Point(3, 6))
+      controller ! MoveCmd(Point(3, 4))
+
+      controller ! MoveCmd(Point(6, 3))
+      controller ! MoveCmd(Point(6, 4))
+
+      controller ! MoveCmd(Point(2, 6))
+      controller ! MoveCmd(Point(2, 4))
+
+      controller ! MoveCmd(Point(6, 4))
+
+      controller ! MoveCmd(Point(4, 6))
+      Thread.sleep(200) // wait for actor message receive
+
+      testInfo match {
+        case gi: GameoverInfo =>
+          gi.status shouldBe "Black got the chicken dinner"
       }
     }
 

@@ -1,6 +1,6 @@
 package core.uchess.controller.impl
 
-import akka.actor.{Actor, ActorSelection}
+import akka.actor.Actor
 import akka.actor.ActorRef
 import akka.actor.Props
 import core.uchess.controller.Controller
