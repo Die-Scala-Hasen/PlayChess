@@ -21,7 +21,7 @@ class Tui extends Actor {
     override def run(): Unit = {
       try {
         while (true) {
-          val input = scala.io.StdIn.readLine()
+          val input = scala.io.StdIn.readLine().trim()
           self ! input
         }
       } catch {

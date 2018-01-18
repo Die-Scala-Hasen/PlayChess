@@ -1,18 +1,20 @@
 package core.uchess
 
+import java.util.concurrent.CountDownLatch
+
 import akka.actor.{ActorRef, ActorSystem, Props}
 import com.google.inject.Inject
 import core.uchess.controller.impl.UChessController
+import core.uchess.view.gui.SwingActor
+import core.uchess.view.tui.Tui
 
-// TODO MARCEL JAVA CODE???
 class Main (implicit val system: ActorSystem) {
-  this: ChessModule =>
-  var controller: ActorRef = null // TODO MARCEL Null is poop
 
-  def start(): Unit = {
-    createUI()
-    controller = system.actorOf(UChessController.props(List(createGUI(), createTUI())), "controller")
-  }
+  private val tuiRef = system.actorOf(Props[Tui], "view$tui")
+  private val guiRef = system.actorOf(Props[SwingActor], "view$gui")
+  val controller: ActorRef = system.actorOf(UChessController.props(List(tuiRef, guiRef)), "controller")
+
+
 }
 
 object Main {
@@ -21,13 +23,11 @@ object Main {
 
   def main(args: Array[String]) {
     implicit val system: ActorSystem = ActorSystem("ChessSystem")
-    val chess = new Main with OfflineModule
-    chess.start()
-    chess.system.whenTerminated.onComplete(_ => System.exit(0))
+    val chess = new Main
+    val cdl = new CountDownLatch(1)
 
-    while (true) {
-      val input = scala.io.StdIn.readLine()
-      chess.tui ! input
-    }
+    chess.system.registerOnTermination{cdl.countDown()}
+    cdl.await()
+    chess.system.whenTerminated.onComplete(_ => System.exit(0))
   }
 }

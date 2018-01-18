@@ -2,7 +2,6 @@ package controllers
 
 import java.util.concurrent.TimeUnit
 
-import scala.concurrent.ExecutionContextExecutor
 import scala.concurrent.ExecutionContext
 
 import akka.actor.Actor
@@ -12,6 +11,9 @@ import akka.pattern.ask
 import akka.util.Timeout
 import models.GameInstance.GetWebController
 import models.GameInstance.WebControllerInfo
+import models.WebControllerActor.UpdateWeb
+import models.WebControllerActor.RegisterWebsocket
+import models.WebControllerActor.UnregisterWebsocket
 import play.api.libs.json.JsValue
 
 object WebSocketActor {
@@ -22,7 +24,6 @@ object WebSocketActor {
 class WebSocketActor(socketOut: ActorRef, controllerActor: ActorRef) extends Actor {
   private implicit val ec: ExecutionContext = context.dispatcher
 
-  context.actorSelection(context.system.child("view$wui")) ! "Some message"
 
   val futureWuiRef = {
     implicit val to = Timeout(2, TimeUnit.SECONDS)
@@ -30,19 +31,20 @@ class WebSocketActor(socketOut: ActorRef, controllerActor: ActorRef) extends Act
   }
 
 
-  futureWuiRef.foreach(_ ! "Hello World")
+  futureWuiRef.foreach(_ ! RegisterWebsocket(self))
 
   override def receive: Receive = {
-    case s: String => println(s"ws actor received msg: $s")
+    // to browser
+    case UpdateWeb(json) => socketOut ! json
     // from browser
     case json: JsValue =>
-      // to browser
-      println("to browser")
-      socketOut ! json
+      println("browser send: " + json)
+
   }
 
   override def postStop() {
     println("Disconnected.")
-    //unsubscribe
+    UnregisterWebsocket
+    futureWuiRef.foreach(_ ! UnregisterWebsocket(self))
   }
 }

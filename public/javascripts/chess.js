@@ -1,7 +1,8 @@
-$('document').ready(function(){
-    console.log("starting Chess game");
-    start();
-});
+// $('document').ready(function(){
+//     console.log("starting Chess game");
+//     start();
+// });
+start();
 var socket;
 function start() {
     socket = new WebSocket("ws://localhost:9000/socket");
@@ -11,6 +12,7 @@ function start() {
         console.log(json);
     };
     socket.onopen = function(event) {
+        socket.send(JSON.stringify({msg: "HelloFromBrowser"}));
         console.log("socket opened");
     };
     socket.onclose = function(event) {
@@ -20,7 +22,3 @@ function start() {
         console.log("got socket error");
     };
 }
-
-// function onMessageRecive(json) {
-//     alert("Hallo");
-// }

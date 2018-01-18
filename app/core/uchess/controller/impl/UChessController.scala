@@ -16,10 +16,9 @@ object UChessController {
 }
 
 class UChessController(viewRefs: List[ActorRef]) extends Actor with Controller {
-  println("Hello World!")
   private var gameField = GameField(8)
-  private var movePiece: Piece = null // TODO MARCEL Null is poop; _ == null
-  private var movePiecePos: Point = null // TODO MARCEL Null is poop
+  private var movePiece: Piece = null
+  private var movePiecePos: Point = null
   private var startPlayerWhite = true
   private var whiteKingAlive = true
   private var blackKingAlive = true
@@ -60,7 +59,6 @@ class UChessController(viewRefs: List[ActorRef]) extends Actor with Controller {
     println(gameField.toJson)
     if (gameOver) {
       val info = GameoverInfo(gameField, winner)
-//      gameOver = false
       tellView(info)
     } else {
       var selPos: (Point) = null
@@ -70,7 +68,6 @@ class UChessController(viewRefs: List[ActorRef]) extends Actor with Controller {
         possMoves = movePiece.possibleMove(gameField.gameField,selPos)
       }
       val info = UpdateInfo(gameField, possMoves, selPos, status)
-      //remote ! info
       tellView(info)
     }
 
