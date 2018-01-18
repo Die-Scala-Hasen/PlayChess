@@ -36,7 +36,6 @@ class UChessController(viewRefs: List[ActorRef]) extends Actor with Controller {
     case QuitCmd => exitGame()
     case RestartCmd => reset()
     case move: MoveCmd => handleMovement(move.point)
-    case _ if !winner.isEmpty => tellView(InvalidInfo(gameField, "Invalid Command"))
     case _ => tellView(InvalidInfo(gameField, "Invalid Command"))
   }
 

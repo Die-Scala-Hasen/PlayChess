@@ -47,7 +47,7 @@ class Tui extends Actor {
       case "r" => controller ! RestartCmd
       case select if line.startsWith("s") && line.length == 3 => handleMove(select)
       case move if line.startsWith("m") && line.length == 3 => handleMove(move)
-      case inp => print(s"Invalid input!: $inp")
+      case inp => println(s"Invalid input!: $inp")
     }
   }
 
