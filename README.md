@@ -1,6 +1,6 @@
 # UChess in Scala with Play-Framework
 
-Core-Repo: [PlayChess](https://github.com/Die-Scala-Hasen/PlayChess "PlayChess")
+Core-Repo: [Uchess_Scala](https://github.com/Die-Scala-Hasen/Uchess_Scala "Uchess_Scala")
 
 Chess Game for the lecture Modern Programming Languages at HTWG Konstanz.
 
