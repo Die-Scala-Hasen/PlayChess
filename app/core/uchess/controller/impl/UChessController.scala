@@ -185,6 +185,9 @@ class UChessController(viewRefs: List[ActorRef]) extends Actor with Controller {
 
   override def exitGame(): Unit = {
     context.system.terminate()
+    context.system.registerOnTermination {
+      System.exit(0)
+    }
   }
 
 }
