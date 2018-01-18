@@ -6,10 +6,13 @@ import akka.actor.Actor
 import akka.actor.Props
 import akka.actor.ActorRef
 import core.uchess.controller.impl.UpdateInfo
+import core.uchess.controller.impl.GameoverInfo
 import models.WebControllerActor.RegisterWebsocket
 import models.WebControllerActor.UnregisterWebsocket
 import models.WebControllerActor.UpdateWeb
+import models.WebControllerActor.GameOverWeb
 import play.api.libs.json.JsValue
+import play.api.libs.json.Json
 
 class WebControllerActor extends Actor {
   val actorList = new mutable.ListBuffer[ActorRef]()
@@ -30,6 +33,21 @@ class WebControllerActor extends Actor {
       for(actor <- actorList) {
         actor ! update
       }
+
+    case gameOver: GameoverInfo =>
+      val status:String = gameOver.status
+
+      val sb: mutable.StringBuilder = new StringBuilder
+
+      sb ++= "{\n" + "\"status\" : \""
+      sb ++= status
+      sb ++= "\"\n}"
+
+      val statusAsJsonObject : JsValue = Json.parse(sb.result())
+      val updateGameOver = GameOverWeb(statusAsJsonObject)
+      for(actor <- actorList){
+        actor ! updateGameOver
+      }
   }
 }
 
@@ -42,5 +60,6 @@ object WebControllerActor{
 
   case class UpdateWeb(json: JsValue)
 
+  case class GameOverWeb(json: JsValue)
 
 }

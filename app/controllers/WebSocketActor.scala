@@ -14,6 +14,7 @@ import models.GameInstance.WebControllerInfo
 import models.WebControllerActor.UpdateWeb
 import models.WebControllerActor.RegisterWebsocket
 import models.WebControllerActor.UnregisterWebsocket
+import models.WebControllerActor.GameOverWeb
 import play.api.libs.json.JsValue
 
 object WebSocketActor {
@@ -36,6 +37,8 @@ class WebSocketActor(socketOut: ActorRef, controllerActor: ActorRef) extends Act
   override def receive: Receive = {
     // to browser
     case UpdateWeb(json) => socketOut ! json
+    case GameOverWeb(json) => socketOut ! json
+
     // from browser
     case json: JsValue =>
       println("browser send: " + json)
