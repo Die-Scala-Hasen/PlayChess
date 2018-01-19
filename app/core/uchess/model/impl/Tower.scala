@@ -17,4 +17,8 @@ case class Tower(color: Char) extends Piece {
       case _ => "T" + color
     }
   }
+
+  override def figureDetails: String = {
+    color+"Tower"
+  }
 }

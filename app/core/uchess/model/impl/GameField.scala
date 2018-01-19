@@ -21,7 +21,7 @@ case class GameField(size: Int, gameField: Map[Point, Piece]) {
 
       gameField.get(Point(x, y)) match {
         case Some(p) => {
-          sb ++= "{\"figur\" " + ": " + "\"" +p.toString + "\"," + "\n" +
+          sb ++= "{\"figur\" " + ": " + "\"" +p.figureDetails + "\"," + "\n" +
             "\"x\"" + ": " + +x + ",\n" +
             "\"y\"" + ": " + y
           if(x==7 && y == 7) {

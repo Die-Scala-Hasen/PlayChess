@@ -12,6 +12,8 @@ trait Piece {
 
   override def toString: String
 
+  def figureDetails: String
+
   protected def internalMove(gameField: Map[Point, Piece], startPoint: Point, possibilities: List[(Int, Int)]): List[Point] = {
     def addValidOffset(p: Point, offset: (Int, Int)): Option[Point] = {
       val ret = Point(p.x + offset._1, p.y + offset._2)

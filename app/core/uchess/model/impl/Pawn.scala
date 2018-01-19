@@ -42,4 +42,8 @@ case class Pawn(color: Char, var firstMove: Boolean = true) extends Piece {
       case _ => "P" + color
     }
   }
+
+  override def figureDetails: String = {
+    color+"Pawn"
+  }
 }

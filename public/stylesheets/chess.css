@@ -1,3 +1,99 @@
-.evenpenis {
-    background-color: #e0bc6f;
+.Chessbtn {
+    height: 65px;
+    width:  60px;
+    border-width: 0px;
+}
+
+.mydiv {
+    position:fixed;
+    top: 30%;
+    left: 50%;
+    width:585px;
+    height:665px;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+    /*margin-top: -9em; !*set to a negative number 1/2 of your height*!*/
+    border: 1px solid #ccc;
+    background-color: #f3f3f3;
+}
+
+.bKing {
+    background: url("../images/bking.png");
+    height: 65px;
+    width:  65px;
+}
+.wKing {
+    background: url("../images/wking.png");
+    height: 65px;
+    width:  60px;
+}
+
+.bKing {
+    background: url("../images/bking.png");
+    height: 65px;
+    width:  60px;
+}
+.wKing {
+    background: url("../images/wking.png");
+    height: 65px;
+    width:  60px;
+}
+
+
+.bKnight {
+    background: url("../images/bKnight.png");
+    height: 65px;
+    width:  60px;
+}
+.wKnight {
+    background: url("../images/wKnight.png");
+    height: 65px;
+    width:  60px;
+}
+
+
+
+.bPawn {
+    background: url("../images/bPawn.png");
+    height: 65px;
+    width:  60px;
+}
+.wPawn {
+    background: url("../images/wPawn.png");
+    height: 65px;
+    width:  60px;
+}
+
+.bQueen {
+    background: url("../images/bQueen.png");
+    height: 65px;
+    width:  60px;
+}
+.wQueen {
+    background: url("../images/wQueen.png");
+    height: 65px;
+    width:  60px;
+}
+
+
+.bTower {
+    background: url("../images/bTower.png");
+    height: 65px;
+    width:  60px;
+}
+.wTower {
+    background: url("../images/wTower.png");
+    height: 65px;
+    width:  60px;
+}
+
+.bBishop {
+      background: url("../images/bBishop.png");
+      height: 65px;
+      width:  60px;
+  }
+.wBishop {
+    background: url("../images/wBishop.png");
+    height: 65px;
+    width:  60px;
 }

@@ -17,4 +17,8 @@ case class Queen(color: Char) extends Piece {
       case _ => "Q" + color
     }
   }
+
+  override def figureDetails: String = {
+    color+"Queen"
+  }
 }

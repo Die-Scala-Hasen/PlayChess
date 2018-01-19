@@ -2,6 +2,7 @@ package controllers
 
 import java.util.concurrent.TimeUnit
 
+import scala.concurrent.ExecutionContextExecutor
 import scala.concurrent.ExecutionContext
 
 import akka.actor.Actor
