@@ -4,17 +4,65 @@
     border-width: 0px;
 }
 
+body {
+    background: url("../images/background.jpg");
+}
+
+.btnClass {
+    font-size: 12px;
+}
+
 .mydiv {
     position:fixed;
     top: 30%;
     left: 50%;
-    width:585px;
-    height:665px;
+    width:533px;
+    height:540px;
     margin-top: -9em; /*set to a negative number 1/2 of your height*/
     margin-left: -15em; /*set to a negative number 1/2 of your width*/
     /*margin-top: -9em; !*set to a negative number 1/2 of your height*!*/
     border: 1px solid #ccc;
     background-color: #f3f3f3;
+}
+.img1 {
+    background: url("../images/1.png");
+    height: 65px;
+    width:  65px;
+}
+.img2 {
+    background: url("../images/2.png");
+    height: 65px;
+    width:  65px;
+}
+.img3 {
+    background: url("../images/3.png");
+    height: 65px;
+    width:  65px;
+}
+.img4 {
+    background: url("../images/4.png");
+    height: 65px;
+    width:  65px;
+}
+.img5 {
+    background: url("../images/5.png");
+    height: 65px;
+    width:  65px;
+}
+.img6 {
+    background: url("../images/6.png");
+    height: 65px;
+    width:  65px;
+}
+.img7 {
+    background: url("../images/7.png");
+    height: 65px;
+    width:  65px;
+}
+.img8 {
+    background: url("../images/8.png");
+    height: 65px;
+    width:  65px;
 }
 
 .bKing {
