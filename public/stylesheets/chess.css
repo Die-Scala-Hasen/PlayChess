@@ -4,6 +4,11 @@
     border-width: 0px;
 }
 
+.leftside {
+    height: 65px;
+    width:  60px;
+}
+
 body {
     background: url("../images/background.jpg");
 }
@@ -27,42 +32,42 @@ body {
 .img1 {
     background: url("../images/1.png");
     height: 65px;
-    width:  65px;
+    width:  60px;
 }
 .img2 {
     background: url("../images/2.png");
     height: 65px;
-    width:  65px;
+    width:  60px;
 }
 .img3 {
     background: url("../images/3.png");
     height: 65px;
-    width:  65px;
+    width:  60px;
 }
 .img4 {
     background: url("../images/4.png");
     height: 65px;
-    width:  65px;
+    width:  60px;
 }
 .img5 {
     background: url("../images/5.png");
     height: 65px;
-    width:  65px;
+    width:  60px;
 }
 .img6 {
     background: url("../images/6.png");
     height: 65px;
-    width:  65px;
+    width:  60px;
 }
 .img7 {
     background: url("../images/7.png");
     height: 65px;
-    width:  65px;
+    width:  60px;
 }
 .img8 {
     background: url("../images/8.png");
     height: 65px;
-    width:  65px;
+    width:  60px;
 }
 
 .bKing {
