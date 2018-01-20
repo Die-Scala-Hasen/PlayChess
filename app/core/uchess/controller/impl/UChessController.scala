@@ -146,10 +146,10 @@ class UChessController(viewRefs: List[ActorRef]) extends Actor with Controller {
 
 
     gameField.gameField.foreach { keyVal =>
-      if (keyVal._2.toString.equals("♔")) {
+      if (keyVal._2.toString.equals("wK")) {
         whiteKingAlive = true
       }
-      if (keyVal._2.toString.equals("♚")) {
+      if (keyVal._2.toString.equals("bK")) {
         blackKingAlive = true
       }
     }

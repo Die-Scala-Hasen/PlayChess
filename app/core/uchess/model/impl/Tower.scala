@@ -12,8 +12,8 @@ case class Tower(color: Char) extends Piece {
 
   override def toString: String = {
     color match {
-      case 'w' => "♖"
-      case 'b' => "♜"
+      case 'w' => "wT"
+      case 'b' => "bT"
       case _ => "T" + color
     }
   }

@@ -30,7 +30,10 @@ class Tui extends Actor {
   }
 
 
-  override def preStart(): Unit = readThread.start()
+  override def preStart(): Unit = {
+    Thread.sleep(1000)
+    readThread.start()
+  }
 
   override def postStop(): Unit = readThread.interrupt()
 

@@ -12,8 +12,8 @@ case class Bishop(color: Char) extends Piece {
 
   override def toString: String = {
     color match {
-      case 'w' => "♗"
-      case 'b' => "♝"
+      case 'w' => "wB"
+      case 'b' => "bB"
       case _ => "B" + color
     }
   }

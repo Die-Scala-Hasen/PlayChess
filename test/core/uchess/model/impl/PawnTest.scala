@@ -95,8 +95,8 @@ class PawnTest extends WordSpec with Matchers {
       val blackPawn = Pawn('b')
       val noSpecificPawn = Pawn('x')
 
-      whitePawn.toString shouldBe "♙"
-      blackPawn.toString shouldBe "♟"
+      whitePawn.toString shouldBe "wP"
+      blackPawn.toString shouldBe "bP"
       noSpecificPawn.toString shouldBe "Px"
     }
   }

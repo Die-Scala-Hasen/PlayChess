@@ -130,8 +130,8 @@ class KnightTest extends WordSpec with Matchers {
       val blackKnight = Knight('b')
       val noSpecificKnight = Knight('x')
 
-      whiteKnight.toString shouldBe "♘"
-      blackKnight.toString shouldBe "♞"
+      whiteKnight.toString shouldBe "wk"
+      blackKnight.toString shouldBe "bk"
       noSpecificKnight.toString shouldBe "Knx"
     }
   }

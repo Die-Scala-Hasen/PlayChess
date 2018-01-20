@@ -12,8 +12,8 @@ case class Knight(color: Char) extends Piece {
 
   override def toString: String = {
     color match {
-      case 'w' => "♘"
-      case 'b' => "♞"
+      case 'w' => "wk"
+      case 'b' => "bk"
       case _ => "Kn" + color
     }
   }

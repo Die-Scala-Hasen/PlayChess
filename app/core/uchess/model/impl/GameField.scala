@@ -43,8 +43,8 @@ case class GameField(size: Int, gameField: Map[Point, Piece]) {
 
     val sb: mutable.StringBuilder = new StringBuilder
 
-    sb ++= "\n  |\u200aa\u202f|\u200ab\u202f|\u200ac\u202f|\u200ad\u202f|\u200ae\u202f|\u200af\u202f|\u200ag\u202f|\u200ah\u202f|"
-    sb ++= "\n==+---------------------+"
+    sb ++= "\n  | a| b| c| d| e| f| g| h|"
+    sb ++= "\n==+-----------------------+"
 
     for {
       y <- 0 until size
@@ -53,12 +53,12 @@ case class GameField(size: Int, gameField: Map[Point, Piece]) {
       if (x == 0) sb ++= "\n" + (y + 1) + " |"
       gameField.get(Point(x, y)) match {
         case Some(p) => sb ++= p.toString
-        case None => sb ++= "\u2001"
+        case None => sb ++= "  "
       }
       sb ++= "|"
     }
 
-    sb ++= "\n==+---------------------+"
+    sb ++= "\n==+-----------------------+"
     sb.result()
   }
 }

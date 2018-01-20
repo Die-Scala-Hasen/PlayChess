@@ -117,8 +117,8 @@ class BishopTest extends WordSpec with Matchers {
       val blackBishop = Bishop('b')
       val noSpecificBishop = Bishop('x')
 
-      whiteBishop.toString shouldBe "♗"
-      blackBishop.toString shouldBe "♝"
+      whiteBishop.toString shouldBe "wB"
+      blackBishop.toString shouldBe "bB"
       noSpecificBishop.toString shouldBe "Bx"
     }
   }

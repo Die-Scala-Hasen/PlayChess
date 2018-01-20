@@ -122,8 +122,8 @@ class TowerTest extends WordSpec with Matchers {
       val blackTower = Tower('b')
       val noSpecificPawn = Tower('x')
 
-      whiteTower.toString shouldBe "♖"
-      blackTower.toString shouldBe "♜"
+      whiteTower.toString shouldBe "wT"
+      blackTower.toString shouldBe "bT"
       noSpecificPawn.toString shouldBe "Tx"
     }
   }

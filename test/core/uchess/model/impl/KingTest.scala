@@ -101,8 +101,8 @@ class KingTest extends WordSpec with Matchers {
       val blackKing = King('b')
       val noSpecificKing = King('x')
 
-      whiteKing.toString shouldBe "♔"
-      blackKing.toString shouldBe "♚"
+      whiteKing.toString shouldBe "wK"
+      blackKing.toString shouldBe "bK"
       noSpecificKing.toString shouldBe "Kx"
     }
   }

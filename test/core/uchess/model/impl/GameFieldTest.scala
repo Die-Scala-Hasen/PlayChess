@@ -78,7 +78,18 @@ class GameFieldTest extends WordSpec with Matchers {
   }
   "A Gamefield" should {
     "have a specific toString Method" in {
-      val printOfGameField = "\n  | a | b | c | d | e | f | g | h |\n==+---------------------+\n1 |♜|♞|♝|♛|♚|♝|♞|♜|\n2 |♟|♟|♟|♟|♟|♟|♟|♟|\n3 | | | | | | | | |\n4 | | | | | | | | |\n5 | | | | | | | | |\n6 | | | | | | | | |\n7 |♙|♙|♙|♙|♙|♙|♙|♙|\n8 |♖|♘|♗|♕|♔|♗|♘|♖|\n==+---------------------+"
+      val printOfGameField = "\n  " +
+        "| a| b| c| d| e| f| g| h|\n" +
+        "==+-----------------------+\n" +
+        "1 |bT|bk|bB|bQ|bK|bB|bk|bT|\n" +
+        "2 |bP|bP|bP|bP|bP|bP|bP|bP|\n" +
+        "3 |  |  |  |  |  |  |  |  |\n" +
+        "4 |  |  |  |  |  |  |  |  |\n" +
+        "5 |  |  |  |  |  |  |  |  |\n" +
+        "6 |  |  |  |  |  |  |  |  |\n" +
+        "7 |wP|wP|wP|wP|wP|wP|wP|wP|\n" +
+        "8 |wT|wk|wB|wQ|wK|wB|wk|wT|\n" +
+        "==+-----------------------+"
 
       val gameFieldToTest = GameField(8)
       gameFieldToTest.toString shouldBe printOfGameField

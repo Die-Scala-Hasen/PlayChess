@@ -12,8 +12,8 @@ case class Queen(color: Char) extends Piece {
 
   override def toString: String = {
     color match {
-      case 'w' => "♕"
-      case 'b' => "♛"
+      case 'w' => "wQ"
+      case 'b' => "bQ"
       case _ => "Q" + color
     }
   }

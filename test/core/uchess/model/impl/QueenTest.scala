@@ -215,8 +215,8 @@ class QueenTest extends WordSpec with Matchers {
       val blackQueen = Queen('b')
       val noSpecificQueen = Queen('x')
 
-      whiteQueen.toString shouldBe "♕"
-      blackQueen.toString shouldBe "♛"
+      whiteQueen.toString shouldBe "wQ"
+      blackQueen.toString shouldBe "bQ"
       noSpecificQueen.toString shouldBe "Qx"
     }
   }

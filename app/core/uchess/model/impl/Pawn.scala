@@ -37,8 +37,8 @@ case class Pawn(color: Char, var firstMove: Boolean = true) extends Piece {
 
   override def toString: String = {
     color match {
-      case 'w' => "♙"
-      case 'b' => "♟"
+      case 'w' => "wP"
+      case 'b' => "bP"
       case _ => "P" + color
     }
   }
