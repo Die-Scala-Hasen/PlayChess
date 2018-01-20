@@ -10,7 +10,7 @@
 }
 
 body {
-    background: url("../images/background.jpg");
+    background: url("../images/backgroundImage.jpeg") no-repeat;
 }
 
 .btnClass {
