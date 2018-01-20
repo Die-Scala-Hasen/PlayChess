@@ -2,6 +2,8 @@ name := "MPSWUI"
 
 version := "1.0"
 
+logLevel := Level.Error
+
 lazy val `mpswui` = (project in file(".")).enablePlugins(PlayScala)
 
 resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"

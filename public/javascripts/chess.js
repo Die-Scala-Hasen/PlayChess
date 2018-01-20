@@ -30,16 +30,25 @@ function start() {
         var data = event.data;
          var json = JSON.parse(data);
         if(JSON.stringify(json) != JSON.stringify(JSON.parse(full))) {
-            var gg = document.getElementById("mydiv");
-            gg.innerHTML = "";
-            full = JSON.stringify(json)
-            console.log("is anders")
-            drawGamefield(json)
+            if(json.hasOwnProperty('gamefield')){
+                var gg = document.getElementById("mydiv");
+                gg.innerHTML = "";
+                full = JSON.stringify(json)
+                console.log("is anders")
+                drawGamefield(json)
+            }else{
+                gameOver(json)
+            }
+
         } else {
-            var gg = document.getElementById("mydiv");
-            gg.innerHTML = "";
-            console.log("is gleich")
-            drawGamefield(json)
+            if(json.hasOwnProperty('gamefield')){
+                var gg = document.getElementById("mydiv");
+                gg.innerHTML = "";
+                console.log("is gleich")
+                drawGamefield(json)
+            }else{
+                gameOver(json)
+            }
         }
     };
     socket.onopen = function(event) {
@@ -57,6 +66,11 @@ function start() {
 
 
 }
+
+function gameOver(json) {
+    alert('GAME-OVER '+json.status)
+}
+
 function drawGamefield(json) {
 
     for (var i = 0; i < 9; i++) {
