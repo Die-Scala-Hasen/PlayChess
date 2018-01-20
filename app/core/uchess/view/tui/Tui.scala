@@ -1,6 +1,5 @@
 package core.uchess.view.tui
 
-import java.io.IOException
 
 import akka.actor.Actor
 import akka.actor.ActorSelection
@@ -25,7 +24,7 @@ class Tui extends Actor {
           self ! input
         }
       } catch {
-        case _: InterruptedException | _: IOException =>
+        case e: Exception => println("exception" + e)
       }
     }
   }
